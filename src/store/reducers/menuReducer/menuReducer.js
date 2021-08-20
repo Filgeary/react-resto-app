@@ -1,7 +1,7 @@
 import { ActionType } from '../../actions/actions'
 
 const initialState = {
-  menu: [],
+  menuList: [],
   isLoading: false,
   isError: false,
 }
@@ -11,7 +11,7 @@ const menuReducer = (state = initialState, action) => {
     case ActionType.LOAD_MENU_SUCCESS:
       return {
         ...state,
-        menu: action.payload,
+        menuList: action.payload,
         isLoading: false,
         isError: false,
       }
@@ -35,8 +35,8 @@ const menuReducer = (state = initialState, action) => {
   }
 }
 
-export const selectMenu = state => state.menu
-export const selectIsLoading = state => state.isLoading
-export const selectIsError = state => state.isError
+export const selectMenuList = state => state.menu.menuList
+export const selectMenuIsLoading = state => state.menu.isLoading
+export const selectMenuIsError = state => state.menu.isError
 
 export default menuReducer

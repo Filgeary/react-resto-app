@@ -6,6 +6,11 @@
 
 - Redux store, actions, reducers
 - redux-devtools-extension
+- ActionType pattern
+- Async actions via `redux-thunk`
+- combineReducers
+- useDispatch, useSelector
+- useParams
 
 ### Launch `db.json`
 

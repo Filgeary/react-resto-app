@@ -1,18 +1,6 @@
-const initialState = {
-  menu: [],
-}
+import { combineReducers } from 'redux'
+import menuReducer from './menuReducer/menuReducer'
 
-const menuReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'MENU_LOADED':
-      return {
-        ...state,
-        menu: action.payload,
-      }
-
-    default:
-      return state
-  }
-}
-
-export default menuReducer
+export default combineReducers({
+  menu: menuReducer,
+})

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import AppHeader from '../app-header/app-header'
-import { CartPage, MainPage } from '../pages'
+import { CartPage, MainPage, MenuItemPage } from '../pages'
 import bgImg from './food-bg.jpg'
 
 const App = () => {
@@ -19,6 +19,10 @@ const App = () => {
 
         <Route path="/cart" exact>
           <CartPage />
+        </Route>
+
+        <Route path="/menu/:id">
+          <MenuItemPage />
         </Route>
 
         <Route>

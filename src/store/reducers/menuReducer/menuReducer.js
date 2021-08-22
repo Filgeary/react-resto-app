@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   cartList: [],
+  totalPrice: 0,
 }
 
 const menuReducer = (state = initialState, action) => {
@@ -51,6 +52,7 @@ const menuReducer = (state = initialState, action) => {
         return {
           ...state,
           cartList: [...state.cartList, foundItem],
+          totalPrice: state.totalPrice + foundItem.price,
         }
       } else {
         return state
@@ -59,6 +61,7 @@ const menuReducer = (state = initialState, action) => {
     case ActionType.REMOVE_ITEM_FROM_CART:
       const id2 = action.payload
       const foundIndex = state.cartList?.findIndex(item => item.id === +id2)
+      const foundItem2 = state.menuList?.find(item => item.id === +id2)
 
       if (foundIndex > -1) {
         return {
@@ -67,6 +70,7 @@ const menuReducer = (state = initialState, action) => {
             ...state.cartList.slice(0, foundIndex),
             ...state.cartList.slice(foundIndex + 1),
           ],
+          totalPrice: state.totalPrice - foundItem2.price,
         }
       } else {
         return state
@@ -94,5 +98,8 @@ export const selectMenuItemById = (state, id) => {
 
 // select Cart
 export const selectCartList = state => state.menu.cartList
+
+// select totalPrice
+export const selectTotalPrice = state => state.menu.totalPrice
 
 export default menuReducer

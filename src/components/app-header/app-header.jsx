@@ -2,8 +2,12 @@ import React from 'react'
 import cartIcon from './shopping-cart-solid.svg'
 import './app-header.scss'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectTotalPrice } from '../../store/reducers/menuReducer/menuReducer'
 
-const AppHeader = ({ total }) => {
+const AppHeader = () => {
+  const totalPrice = useSelector(selectTotalPrice)
+
   return (
     <header className="header">
       <NavLink
@@ -22,7 +26,7 @@ const AppHeader = ({ total }) => {
         title="Cart"
       >
         <img className="header__cart" src={cartIcon} alt="cart"></img>
-        Total: {total} $
+        Total: {totalPrice} $
       </NavLink>
     </header>
   )

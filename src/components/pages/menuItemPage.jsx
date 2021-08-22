@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { actionAddItemToCart } from '../../store/actions/actions'
 import { actionFetchMenuItemById } from '../../store/actions/api-actions'
 import {
+  selectCartList,
   selectMenuIsError,
   selectMenuIsLoading,
   selectMenuItem,
@@ -19,11 +21,35 @@ const MenuItemPage = () => {
     dispatch(actionFetchMenuItemById(itemId))
   }, [dispatch, itemId])
 
+  const [orderTitle, setOrderTitle] = useState('Add to Cart')
+  const [isDisabled, setIsDisabled] = useState(false)
+
+  const handleAddToCart = (evt, id) => {
+    setOrderTitle('Added')
+    setIsDisabled(true)
+
+    evt.preventDefault()
+    dispatch(actionAddItemToCart(id))
+  }
+
+  // cart
+  const cartList = useSelector(selectCartList)
+  const findItemInCart = id => cartList?.find(item => item.id === +id)
+  const isItemAddedToCart = findItemInCart(itemId)
+
+  useEffect(() => {
+    if (isItemAddedToCart) {
+      setOrderTitle('Added')
+      setIsDisabled(true)
+    }
+  }, [isItemAddedToCart])
+
+  // menu
   const menuItem = useSelector(selectMenuItem)
   const isLoading = useSelector(selectMenuIsLoading)
   const isError = useSelector(selectMenuIsError)
 
-  const { title, url, category, price } = menuItem
+  const { id, title, url, category, price } = menuItem
 
   return (
     <div className="menu-item-page__wrapper">
@@ -31,7 +57,9 @@ const MenuItemPage = () => {
         {isLoading && !isError ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
 
-        <h2 className="menu__title">{title}</h2>
+        <h2 className="menu__title">
+          {title} / {id}
+        </h2>
         <img className="menu__img" src={url} alt={title}></img>
         <div className="menu__category">
           Category: <span>{category}</span>
@@ -39,8 +67,13 @@ const MenuItemPage = () => {
         <div className="menu__price">
           Price: <span>{price}$</span>
         </div>
-        <button type="button" className="menu__btn">
-          Add to cart
+        <button
+          type="button"
+          className="menu__btn"
+          disabled={isDisabled}
+          onClick={evt => handleAddToCart(evt, id)}
+        >
+          {orderTitle}
         </button>
       </section>
     </div>

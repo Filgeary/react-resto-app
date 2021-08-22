@@ -2,8 +2,9 @@
   display: flex;
   gap: 40px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+  min-height: calc(100vh - 60px);
   padding: 40px 60px;
 }
 

@@ -1,9 +1,10 @@
 .cart {
   padding-top: 60px;
   padding-bottom: 50px;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 
   &__title {
+    margin-bottom: 40px;
     font-size: 36px;
     color: #fff;
     text-align: center;
@@ -11,6 +12,8 @@
   }
 
   &__list {
+    display: grid;
+    gap: 40px;
     width: 65%;
     margin: 0 auto;
   }
@@ -22,7 +25,6 @@
     align-items: center;
     gap: 20px;
     padding-right: 40px;
-    margin-top: 40px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -57,9 +59,10 @@
   }
 
   &__empty-desc {
-    margin: 40px auto;
+    padding: 40px;
     text-align: center;
-    color: #fff;
+    color: inherit;
     font-size: 24px;
+    background-color: #ccc;
   }
 }

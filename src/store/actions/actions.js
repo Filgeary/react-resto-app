@@ -6,6 +6,10 @@ export const ActionType = {
 
   // LOAD_MENU_ITEM
   LOAD_MENU_ITEM_SUCCESS: 'LOAD_MENU_ITEM_SUCCESS',
+
+  // CART
+  ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
+  REMOVE_ITEM_FROM_CART: 'REMOVE_ITEM_FROM_CART',
 }
 
 // LOAD_MENU
@@ -33,5 +37,20 @@ export const actionLoadMenuItemSuccess = menuItem => {
   return {
     type: ActionType.LOAD_MENU_ITEM_SUCCESS,
     payload: menuItem,
+  }
+}
+
+// CART
+export const actionAddItemToCart = id => {
+  return {
+    type: ActionType.ADD_ITEM_TO_CART,
+    payload: id,
+  }
+}
+
+export const actionRemoveItemFromCart = id => {
+  return {
+    type: ActionType.REMOVE_ITEM_FROM_CART,
+    payload: id,
   }
 }

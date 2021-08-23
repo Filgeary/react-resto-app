@@ -5,7 +5,15 @@ import {
   actionIncrementItemToCart,
   actionRemoveItemFromCart,
 } from '../../store/actions/actions'
-import { selectCartList } from '../../store/reducers/menuReducer/menuReducer'
+import { actionPostOrder } from '../../store/actions/api-actions'
+import {
+  selectCartList,
+  selectOrderData,
+  selectOrderIsError,
+  selectOrderIsLoading,
+} from '../../store/reducers/menuReducer/menuReducer'
+import ErrorMessage from '../errorMessage/errorMessage'
+import Spinner from '../spinner/spinner'
 import './cart-table.scss'
 
 const CartTable = () => {
@@ -22,12 +30,24 @@ const CartTable = () => {
   const handleDecrementItemFromCart = id => {
     dispatch(actionDecrementItemFromCart(id))
   }
+
+  const handleMakeOrder = data => {
+    dispatch(actionPostOrder(data))
+  }
+
   const cartList = useSelector(selectCartList)
+  const orderData = useSelector(selectOrderData)
+  console.table(orderData)
+  const orderIsLoading = useSelector(selectOrderIsLoading)
+  const orderIsError = useSelector(selectOrderIsError)
 
   return (
     <>
       <div className="cart__title">Your Order:</div>
       <div className="cart__list">
+        {orderIsLoading && !orderIsError ? <Spinner /> : null}
+        {orderIsError ? <ErrorMessage /> : null}
+
         {cartList.length > 0 ? (
           cartList.map(item => {
             const { id, title, url, price, totalAmount } = item
@@ -54,6 +74,7 @@ const CartTable = () => {
                     title="Remove Item"
                   ></button>
                 ) : null}
+
                 <button
                   className="cart__btn-plus"
                   type="button"
@@ -65,6 +86,17 @@ const CartTable = () => {
           })
         ) : (
           <p className="cart__empty-desc">Your Cart is empty!</p>
+        )}
+
+        {cartList.length > 0 && (
+          <button
+            type="button"
+            className="cart__btn-order"
+            title="Make Order!"
+            onClick={() => handleMakeOrder(cartList)}
+          >
+            Make Order!
+          </button>
         )}
       </div>
     </>

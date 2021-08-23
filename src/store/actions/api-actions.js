@@ -1,3 +1,4 @@
+import { adaptOrderDataToServer } from '../../services/adapter'
 import Api from '../../services/api'
 import { selectMenuList } from '../reducers/menuReducer/menuReducer'
 import {
@@ -5,6 +6,10 @@ import {
   actionLoadMenuItemSuccess,
   actionLoadMenuRequest,
   actionLoadMenuSuccess,
+  actionPostOrderFailure,
+  actionPostOrderRequest,
+  actionPostOrderSuccess,
+  actionResetCart,
 } from './actions'
 
 const api = new Api()
@@ -33,6 +38,21 @@ export const actionFetchMenuItemById = id => (dispatch, getState) => {
     result => dispatch(actionLoadMenuItemSuccess(result)),
     error => {
       dispatch(actionLoadMenuFailure())
+      console.error(error)
+    },
+  )
+}
+
+export const actionPostOrder = data => (dispatch, getState) => {
+  dispatch(actionPostOrderRequest())
+
+  api.postDataJSON(adaptOrderDataToServer(data)).then(
+    result => {
+      dispatch(actionPostOrderSuccess(result))
+      dispatch(actionResetCart())
+    },
+    error => {
+      dispatch(actionPostOrderFailure())
       console.error(error)
     },
   )

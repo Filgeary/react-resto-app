@@ -10,7 +10,7 @@ const App = () => {
       style={{ background: `url(${bgImg}) center center/cover no-repeat` }}
       className="app"
     >
-      <AppHeader total={50} />
+      <AppHeader />
 
       <Switch>
         <Route path="/" exact>

@@ -10,6 +10,8 @@ export const ActionType = {
   // CART
   ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
   REMOVE_ITEM_FROM_CART: 'REMOVE_ITEM_FROM_CART',
+  INCREMENT_ITEM_TO_CART: 'INCREMENT_ITEM_TO_CART',
+  DECREMENT_ITEM_FROM_CART: 'DECREMENT_ITEM_FROM_CART',
 }
 
 // LOAD_MENU
@@ -51,6 +53,20 @@ export const actionAddItemToCart = id => {
 export const actionRemoveItemFromCart = id => {
   return {
     type: ActionType.REMOVE_ITEM_FROM_CART,
+    payload: id,
+  }
+}
+
+export const actionIncrementItemToCart = id => {
+  return {
+    type: ActionType.INCREMENT_ITEM_TO_CART,
+    payload: id,
+  }
+}
+
+export const actionDecrementItemFromCart = id => {
+  return {
+    type: ActionType.DECREMENT_ITEM_FROM_CART,
     payload: id,
   }
 }

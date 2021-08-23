@@ -46,13 +46,13 @@ const menuReducer = (state = initialState, action) => {
     // CART
     case ActionType.ADD_ITEM_TO_CART:
       const id = action.payload
-      const foundItem = state.menuList?.find(item => item.id === +id)
+      const itemInMenu = state.menuList?.find(item => item.id === +id)
 
-      if (foundItem) {
+      if (itemInMenu) {
         return {
           ...state,
-          cartList: [...state.cartList, foundItem],
-          totalPrice: state.totalPrice + foundItem.price,
+          cartList: [...state.cartList, { ...itemInMenu, totalAmount: 1 }],
+          totalPrice: state.totalPrice + itemInMenu.price,
         }
       } else {
         return state
@@ -60,17 +60,37 @@ const menuReducer = (state = initialState, action) => {
 
     case ActionType.REMOVE_ITEM_FROM_CART:
       const id2 = action.payload
-      const foundIndex = state.cartList?.findIndex(item => item.id === +id2)
-      const foundItem2 = state.menuList?.find(item => item.id === +id2)
+      const index2 = state.cartList?.findIndex(item => item.id === +id2)
+      const price =
+        state.cartList[index2]['price'] * state.cartList[index2]['totalAmount']
 
-      if (foundIndex > -1) {
+      if (index2 > -1) {
         return {
           ...state,
           cartList: [
-            ...state.cartList.slice(0, foundIndex),
-            ...state.cartList.slice(foundIndex + 1),
+            ...state.cartList.slice(0, index2),
+            ...state.cartList.slice(index2 + 1),
           ],
-          totalPrice: state.totalPrice - foundItem2.price,
+          totalPrice: state.totalPrice - price,
+        }
+      } else {
+        return state
+      }
+
+    case ActionType.INCREMENT_ITEM_TO_CART:
+      const id3 = action.payload
+      const index3 = state.cartList?.findIndex(item => item.id === +id3)
+      const itemInState3 = state.cartList?.find(item => item.id === +id3)
+
+      if (index3 > -1) {
+        return {
+          ...state,
+          cartList: [
+            ...state.cartList.slice(0, index3),
+            { ...itemInState3, totalAmount: ++itemInState3.totalAmount },
+            ...state.cartList.slice(index3 + 1),
+          ],
+          totalPrice: state.totalPrice + itemInState3.price,
         }
       } else {
         return state

@@ -58,6 +58,30 @@
     cursor: pointer;
   }
 
+  &__btn-minus,
+  &__btn-plus {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__btn-minus {
+    left: -50px;
+  }
+
+  &__btn-plus {
+    right: -50px;
+  }
+
   &__empty-desc {
     padding: 40px;
     text-align: center;

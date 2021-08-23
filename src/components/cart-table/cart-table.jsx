@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  actionDecrementItemFromCart,
   actionIncrementItemToCart,
   actionRemoveItemFromCart,
 } from '../../store/actions/actions'
@@ -18,6 +19,9 @@ const CartTable = () => {
     dispatch(actionIncrementItemToCart(id))
   }
 
+  const handleDecrementItemFromCart = id => {
+    dispatch(actionDecrementItemFromCart(id))
+  }
   const cartList = useSelector(selectCartList)
 
   return (
@@ -43,7 +47,11 @@ const CartTable = () => {
                 </div>
 
                 {totalAmount > 1 ? (
-                  <button className="cart__btn-minus" type="button">
+                  <button
+                    className="cart__btn-minus"
+                    type="button"
+                    onClick={() => handleDecrementItemFromCart(id)}
+                  >
                     -
                   </button>
                 ) : null}

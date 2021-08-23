@@ -96,6 +96,25 @@ const menuReducer = (state = initialState, action) => {
         return state
       }
 
+    case ActionType.DECREMENT_ITEM_FROM_CART:
+      const id4 = action.payload
+      const index4 = state.cartList?.findIndex(item => item.id === +id4)
+      const itemInState4 = state.cartList?.find(item => item.id === +id4)
+
+      if (index4 > -1) {
+        return {
+          ...state,
+          cartList: [
+            ...state.cartList.slice(0, index4),
+            { ...itemInState4, totalAmount: --itemInState4.totalAmount },
+            ...state.cartList.slice(index4 + 1),
+          ],
+          totalPrice: state.totalPrice - itemInState4.price,
+        }
+      } else {
+        return state
+      }
+
     default:
       return state
   }

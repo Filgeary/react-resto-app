@@ -9,6 +9,7 @@ import {
   actionPostOrderFailure,
   actionPostOrderRequest,
   actionPostOrderSuccess,
+  actionResetCart,
 } from './actions'
 
 const api = new Api()
@@ -46,7 +47,10 @@ export const actionPostOrder = data => (dispatch, getState) => {
   dispatch(actionPostOrderRequest())
 
   api.postDataJSON(adaptOrderDataToServer(data)).then(
-    result => dispatch(actionPostOrderSuccess(result)),
+    result => {
+      dispatch(actionPostOrderSuccess(result))
+      dispatch(actionResetCart())
+    },
     error => {
       dispatch(actionPostOrderFailure())
       console.error(error)

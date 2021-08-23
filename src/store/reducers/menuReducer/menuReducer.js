@@ -116,6 +116,13 @@ const menuReducer = (state = initialState, action) => {
         return state
       }
 
+    case ActionType.RESET_CART:
+      return {
+        ...state,
+        cartList: [],
+        totalPrice: 0,
+      }
+
     // POST_ORDER
     case ActionType.POST_ORDER_REQUEST:
       return {

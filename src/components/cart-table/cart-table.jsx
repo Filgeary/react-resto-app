@@ -37,7 +37,6 @@ const CartTable = () => {
 
   const cartList = useSelector(selectCartList)
   const orderData = useSelector(selectOrderData)
-  console.table(orderData)
   const orderIsLoading = useSelector(selectOrderIsLoading)
   const orderIsError = useSelector(selectOrderIsError)
 
@@ -98,6 +97,29 @@ const CartTable = () => {
             Make Order!
           </button>
         )}
+
+        <div className="cart__order-block">
+          {orderData.length > 0 && (
+            <div>
+              <h2 className="cart__order-header">Thanks for Your Order!</h2>
+              <p className="cart__order-label">Your Order was...</p>
+            </div>
+          )}
+          {orderData.length > 0
+            ? orderData.map(item => {
+                const { id, title, totalAmount, date } = item
+
+                return (
+                  <p key={id} className="cart__order-row">
+                    <span className="cart__order-total">{totalAmount}</span>
+                    <small>x</small>
+                    <span className="cart__order-title">{title}</span>
+                    <small className="cart__order-date">{date}</small>
+                  </p>
+                )
+              })
+            : null}
+        </div>
       </div>
     </>
   )

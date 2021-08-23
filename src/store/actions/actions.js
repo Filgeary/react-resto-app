@@ -12,6 +12,7 @@ export const ActionType = {
   REMOVE_ITEM_FROM_CART: 'REMOVE_ITEM_FROM_CART',
   INCREMENT_ITEM_TO_CART: 'INCREMENT_ITEM_TO_CART',
   DECREMENT_ITEM_FROM_CART: 'DECREMENT_ITEM_FROM_CART',
+  RESET_CART: 'RESET_CART',
 
   // ORDER
   POST_ORDER_REQUEST: 'POST_ORDER_REQUEST',
@@ -73,6 +74,12 @@ export const actionDecrementItemFromCart = id => {
   return {
     type: ActionType.DECREMENT_ITEM_FROM_CART,
     payload: id,
+  }
+}
+
+export const actionResetCart = () => {
+  return {
+    type: ActionType.RESET_CART,
   }
 }
 

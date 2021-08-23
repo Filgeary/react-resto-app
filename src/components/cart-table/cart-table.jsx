@@ -51,17 +51,15 @@ const CartTable = () => {
                     className="cart__btn-minus"
                     type="button"
                     onClick={() => handleDecrementItemFromCart(id)}
-                  >
-                    -
-                  </button>
+                    title="Remove Item"
+                  ></button>
                 ) : null}
                 <button
                   className="cart__btn-plus"
                   type="button"
                   onClick={() => handleIncrementItemToCart(id)}
-                >
-                  +
-                </button>
+                  title="Add Item"
+                ></button>
               </div>
             )
           })

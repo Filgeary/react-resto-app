@@ -75,10 +75,12 @@
   }
 
   &__btn-minus {
+    background: url(./iconmonstr-minus-6.svg) center center/cover no-repeat;
     left: -50px;
   }
 
   &__btn-plus {
+    background: url(./iconmonstr-plus-6.svg) center center/cover no-repeat;
     right: -50px;
   }
 

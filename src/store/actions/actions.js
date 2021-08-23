@@ -12,6 +12,11 @@ export const ActionType = {
   REMOVE_ITEM_FROM_CART: 'REMOVE_ITEM_FROM_CART',
   INCREMENT_ITEM_TO_CART: 'INCREMENT_ITEM_TO_CART',
   DECREMENT_ITEM_FROM_CART: 'DECREMENT_ITEM_FROM_CART',
+
+  // ORDER
+  POST_ORDER_REQUEST: 'POST_ORDER_REQUEST',
+  POST_ORDER_SUCCESS: 'POST_ORDER_SUCCESS',
+  POST_ORDER_FAILURE: 'POST_ORDER_FAILURE',
 }
 
 // LOAD_MENU
@@ -68,5 +73,25 @@ export const actionDecrementItemFromCart = id => {
   return {
     type: ActionType.DECREMENT_ITEM_FROM_CART,
     payload: id,
+  }
+}
+
+// POST
+export const actionPostOrderRequest = () => {
+  return {
+    type: ActionType.POST_ORDER_REQUEST,
+  }
+}
+
+export const actionPostOrderSuccess = data => {
+  return {
+    type: ActionType.POST_ORDER_SUCCESS,
+    payload: data,
+  }
+}
+
+export const actionPostOrderFailure = () => {
+  return {
+    type: ActionType.POST_ORDER_FAILURE,
   }
 }

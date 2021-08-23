@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   cartList: [],
   totalPrice: 0,
+  orderData: [],
 }
 
 const menuReducer = (state = initialState, action) => {
@@ -115,6 +116,29 @@ const menuReducer = (state = initialState, action) => {
         return state
       }
 
+    // POST_ORDER
+    case ActionType.POST_ORDER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      }
+
+    case ActionType.POST_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderData: action.payload,
+        isLoading: false,
+        isError: false,
+      }
+
+    case ActionType.POST_ORDER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      }
+
     default:
       return state
   }
@@ -140,5 +164,10 @@ export const selectCartList = state => state.menu.cartList
 
 // select totalPrice
 export const selectTotalPrice = state => state.menu.totalPrice
+
+// select OrderData
+export const selectOrderData = state => state.menu.orderData
+export const selectOrderIsLoading = state => state.menu.isLoading
+export const selectOrderIsError = state => state.menu.isError
 
 export default menuReducer

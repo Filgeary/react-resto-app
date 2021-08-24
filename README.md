@@ -16,7 +16,7 @@
 - useDispatch, useSelector
 - useParams for Routing
 
-### Backend via local DB
+## Backend via local DB (_unfortunately_)
 
 GET requests on `db.json`
 

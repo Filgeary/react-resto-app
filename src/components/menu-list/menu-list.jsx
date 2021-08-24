@@ -35,23 +35,25 @@ const MenuList = () => {
   const isItemAddedToCart = id => cartList?.find(item => item.id === +id)
 
   return (
-    <ul className="menu__list">
-      {isLoading && !isError ? <Spinner /> : null}
-      {isError ? <ErrorMessage /> : null}
-
-      {menuItems.length > 0
-        ? menuItems.map(item => {
-            return (
-              <MenuListItem
-                key={item.id}
-                menuItem={item}
-                isItemAddedToCart={isItemAddedToCart(item.id)}
-                onAddToCart={handleAddToCart}
-              />
-            )
-          })
-        : null}
-    </ul>
+    <section>
+      <h1 className="visually-hidden">Restoran Menu</h1>
+      <ul className="menu__list">
+        {isLoading && !isError ? <Spinner /> : null}
+        {isError ? <ErrorMessage /> : null}
+        {menuItems.length > 0
+          ? menuItems.map(item => {
+              return (
+                <MenuListItem
+                  key={item.id}
+                  menuItem={item}
+                  isItemAddedToCart={isItemAddedToCart(item.id)}
+                  onAddToCart={handleAddToCart}
+                />
+              )
+            })
+          : null}
+      </ul>
+    </section>
   )
 }
 

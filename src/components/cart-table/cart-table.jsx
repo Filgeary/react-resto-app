@@ -42,6 +42,7 @@ const CartTable = () => {
 
   return (
     <>
+      <h1 className="visually-hidden">Cart</h1>
       <div className="cart__title">Your Order:</div>
       <div className="cart__list">
         {orderIsLoading && !orderIsError ? <Spinner /> : null}

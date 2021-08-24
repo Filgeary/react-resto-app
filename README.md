@@ -2,6 +2,10 @@
 
 > React training-project from udemy course
 
+## Preview
+
+![preview-image](./preview.webp)
+
 ## What I've learned
 
 - Redux store, actions, reducers
@@ -10,11 +14,16 @@
 - Async actions via `redux-thunk`
 - combineReducers
 - useDispatch, useSelector
-- useParams
+- useParams for Routing
 
-### Launch `db.json`
+### Backend via local DB
+
+GET requests on `db.json`
 
 ```sh
+# important order
 npx json-server src/db.json
 npm start
 ```
+
+POST requests on `jsonplaceholder`

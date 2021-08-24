@@ -9,3 +9,9 @@ export const adaptOrderDataToServer = data => {
   })
   return newOrder
 }
+
+export const adaptOrderDataToClient = data => {
+  return Object.entries(data)
+    .filter(item => item[0] !== 'id')
+    .map(item => item[1])
+}

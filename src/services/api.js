@@ -1,13 +1,13 @@
 export default class Api {
-  #baseUrl = 'http://localhost:3000/menu'
-  #postUrl = 'http://localhost:3000/orders'
+  #getUrl = 'http://localhost:3000/menu'
+  #postUrl = 'https://jsonplaceholder.typicode.com/posts'
 
   getAllMenuItems = async () => {
-    const result = await fetch(this.#baseUrl)
+    const result = await fetch(this.#getUrl)
 
     if (!result.ok) {
       throw new Error(
-        `Failed to fetch ${this.#baseUrl}, status: ${result.status}`,
+        `Failed to fetch ${this.#getUrl}, status: ${result.status}`,
       )
     }
 
@@ -15,11 +15,11 @@ export default class Api {
   }
 
   getMenuItemById = async id => {
-    const result = await fetch(this.#baseUrl + `/${id}`)
+    const result = await fetch(this.#getUrl + `/${id}`)
 
     if (!result.ok) {
       throw new Error(
-        `Failed to fetch ${this.#baseUrl + `/${id}`}, status: ${result.status}`,
+        `Failed to fetch ${this.#getUrl + `/${id}`}, status: ${result.status}`,
       )
     }
 

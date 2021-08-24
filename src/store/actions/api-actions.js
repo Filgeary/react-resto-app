@@ -1,4 +1,7 @@
-import { adaptOrderDataToServer } from '../../services/adapter'
+import {
+  adaptOrderDataToServer,
+  adaptOrderDataToClient,
+} from '../../services/adapter'
 import Api from '../../services/api'
 import { selectMenuList } from '../reducers/menuReducer/menuReducer'
 import {
@@ -48,7 +51,12 @@ export const actionPostOrder = data => (dispatch, getState) => {
 
   api.postDataJSON(adaptOrderDataToServer(data)).then(
     result => {
-      dispatch(actionPostOrderSuccess(result))
+      const adaptedData = adaptOrderDataToClient(result)
+
+      // TODO: remove later
+      console.table(adaptedData)
+
+      dispatch(actionPostOrderSuccess(adaptedData))
       dispatch(actionResetCart())
     },
     error => {

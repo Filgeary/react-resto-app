@@ -1,6 +1,8 @@
 # React-Resto-app
 
 > React training-project from udemy course
+> 
+> Redux first project
 
 ## Preview
 

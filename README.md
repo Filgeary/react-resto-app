@@ -18,7 +18,7 @@
 
 ## Backend via local DB (_unfortunately_)
 
-GET requests on `db.json`
+GET requests on `localhost:3000` via `json-server`
 
 ```sh
 # important order
@@ -26,4 +26,9 @@ npx json-server src/db.json
 npm start
 ```
 
-POST requests on `jsonplaceholder`
+POST requests on `jsonplaceholder` service
+
+## TODO
+
+- add tests, TS
+- set Firebase DB ?
